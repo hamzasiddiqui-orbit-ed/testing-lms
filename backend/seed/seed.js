@@ -10,14 +10,14 @@ connectDB();
 const importData = async () => {
   try {
     const user = new User({
-      username: "test_admin",
+      username: "test_learner",
       password: "password",
-      email: "test_admin@email.com",
-      name: "Test Admin",
+      email: "test_learner@email.com",
+      name: "Test Learner",
       phone: "03333333333",
-      jobTitle: "Administrator",
-      description: "Administers stuff.",
-      userClass: "Admin",
+      jobTitle: "Student",
+      description: "BS Software Engineering.",
+      userClass: "Learner",
     });
 
     console.log('about to save.');

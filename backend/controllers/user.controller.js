@@ -18,6 +18,16 @@ const authUser = async (req, res) => {
   }
 
   if (user && (await user.matchPassword(password))) {
+    res.cookie('jwt', generateToken(user._id), {
+      httpOnly: true,
+      // Only secure cookies in production mode
+      secure: process.env.NODE_ENV !== 'development',
+      // Prevent CSRF attacks
+      sameSite: 'Strict',
+      // Max age = 24 hours
+      maxAge: 24 * 60 * 60 * 1000,
+    });
+
     res.json({
       _id: user._id,
       username: user.username,
@@ -25,11 +35,19 @@ const authUser = async (req, res) => {
       name: user.name,
       jobTitle: user.jobTitle,
       userClass: user.userClass,
-      token: generateToken(user._id),
     });
   } else {
     return res.status(401).json({ message: "Invalid credentials. Please try again." });
   }
 };
 
-module.exports = { authUser };
+const logoutUser = (req, res) => {
+  res.cookie('jwt', '', {
+    httpOnly: true,
+    // Expire the cookie
+    expires: new Date(0)
+  });
+  res.status(200).json({ message: "Logged out successfully" });
+};
+
+module.exports = { authUser, logoutUser };
