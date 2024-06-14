@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useLogoutMutation } from "../slices/userApiSlice";
+import { logout } from "../slices/authSlice";
 import {
   Navbar,
   NavbarBrand,
@@ -21,15 +24,20 @@ import OrbitLogo from "../assets/orbitlogo.png";
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [name, setName] = useState('');
-  const [jobTitle, setJobTitle] = useState('');
+  // const [name, setName] = useState('');
+  // const [jobTitle, setJobTitle] = useState('');
+  const { userInfo } = useSelector((state) => state.auth);
+
+  const dispatch = useDispatch();
   const navigate = useNavigate()
+
+  const [logoutApiCall] = useLogoutMutation();
 
   const DropdownContent = ({ variant, color }) => (
     <Dropdown>
       <DropdownTrigger>
         <Button color={color} variant={variant} className="capitalize h-12">
-          <User name={name} description={jobTitle} className="" />
+          <User name={userInfo.name} description={userInfo.jobTitle} className="" />
         </Button>
       </DropdownTrigger>
       <DropdownMenu color={color} variant={variant}>
@@ -60,23 +68,29 @@ export default function Nav() {
     "Log Out",
   ];
 
-  useEffect(() => {
-    console.log(localStorage.getItem('userInfo'));
+  // useEffect(() => {
+  //   const storedUserInfo = localStorage.getItem('userInfo');
+  //   const name = userInfo.name;
+  //   const jobTitle = userInfo.jobTitle;
 
-    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+  //   if (name ) {
+  //     const parsedUserInfo = JSON.parse(storedUserInfo);
+  //     setName(parsedUserInfo.name);
+  //     setJobTitle(parsedUserInfo.jobTitle);
+  //   }
+  // });
 
-    console.log(userInfo)
+  const handleLogOut = async () => {
+    // localStorage.removeItem('userInfo');
+    // navigate('/');
 
-    setName(userInfo.name);
-    setJobTitle(userInfo.jobTitle);
-
-    console.log(name);
-    console.log(jobTitle);
-  })
-
-  const handleLogOut = () => {
-    localStorage.removeItem('userInfo');
-    navigate('/');
+    try { 
+      await logoutApiCall().unwrap();
+      dispatch(logout());
+      navigate('/');
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
