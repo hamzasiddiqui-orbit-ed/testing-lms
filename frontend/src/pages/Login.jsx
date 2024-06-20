@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useLoginMutation } from "../slices/userApiSlice";
@@ -17,61 +16,30 @@ import OrbitLogo from "../assets/orbitlogo.png";
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  // const [error, setError] = useState(null);
-  // const [loading, setLoading] = useState(false);
-  // const navigate = useNavigate();
+  const [error, setError] = useState(null);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [login, { isLoading, error }] = useLoginMutation();
+  const [login, { isLoading }] = useLoginMutation();
 
   const userInfo = useSelector((state) => state.auth.userInfo);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (username == "" || password == "") {
+      setError("Username and Password fields should not be empty.");
+      return;
+    }
+
     try {
       const res = await login({ username, password }).unwrap();
       dispatch(setCredentials({ ...res }));
     } catch (err) {
-      console.error("failed to login", error);
+      setError(err.data.message); // Capture and set the error message
+      console.error("Failed to login:", err.data);
     }
-
-    // setError(false);
-    // setLoading(true);
-    // console.log("handle submit called.");
-
-    // if (username == '' || password == '') {
-    //   setError('Input fields should not be empty!');
-    // }
-
-    // const config = {
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // };
-
-    // axios
-    //   .post(
-    //     "/api/users/login",
-    //     { username, password },
-    //     config
-    //   )
-    //   .then((response) => {
-    //     // Handle successful login
-    //     const data = response.data;
-    //     localStorage.setItem("userInfo", JSON.stringify(data));
-    //     console.log("Login successful:", data);
-    //     setLoading(false);
-    //     navigate('/admin_dashboard');
-    //   })
-    //   .catch((error) => {
-    //     // Handle errors
-    //     console.error("Error logging in:", error);
-    //     setLoading(false);
-    //     setError('Invalid Login credentials. Please try again.');
-    //   });
   };
 
   useEffect(() => {
@@ -134,9 +102,9 @@ function Login() {
             <Button
               type="submit"
               color="warning"
-              style={{ width: "400px" }}
+              style={{ minWidth: "400px" }}
               size="lg"
-              className="text-white mb-3"
+              className="text-white mb-3 w-full"
               isLoading={isLoading}
             >
               Log In
