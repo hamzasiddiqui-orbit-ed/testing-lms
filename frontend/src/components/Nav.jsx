@@ -18,18 +18,18 @@ import {
   DropdownMenu,
   DropdownItem,
   User,
+  Accordion,
+  AccordionItem
 } from "@nextui-org/react";
 import { FiLogOut } from "react-icons/fi";
 import OrbitLogo from "../assets/orbitlogo.png";
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  // const [name, setName] = useState('');
-  // const [jobTitle, setJobTitle] = useState('');
   const { userInfo } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [logoutApiCall] = useLogoutMutation();
 
@@ -37,7 +37,11 @@ export default function Nav() {
     <Dropdown>
       <DropdownTrigger>
         <Button color={color} variant={variant} className="capitalize h-12">
-          <User name={userInfo.name} description={userInfo.jobTitle} className="" />
+          <User
+            name={userInfo.name}
+            description={userInfo.jobTitle}
+            className=""
+          />
         </Button>
       </DropdownTrigger>
       <DropdownMenu color={color} variant={variant}>
@@ -68,26 +72,11 @@ export default function Nav() {
     "Log Out",
   ];
 
-  // useEffect(() => {
-  //   const storedUserInfo = localStorage.getItem('userInfo');
-  //   const name = userInfo.name;
-  //   const jobTitle = userInfo.jobTitle;
-
-  //   if (name ) {
-  //     const parsedUserInfo = JSON.parse(storedUserInfo);
-  //     setName(parsedUserInfo.name);
-  //     setJobTitle(parsedUserInfo.jobTitle);
-  //   }
-  // });
-
   const handleLogOut = async () => {
-    // localStorage.removeItem('userInfo');
-    // navigate('/');
-
-    try { 
+    try {
       await logoutApiCall().unwrap();
       dispatch(logout());
-      navigate('/');
+      navigate("/");
     } catch (err) {
       console.error(err);
     }
@@ -96,8 +85,11 @@ export default function Nav() {
   return (
     <Navbar
       onMenuOpenChange={setIsMenuOpen}
-      className="absolute top-0 h-18 border-b-2"
-      style={{ backgroundColor: "#31314D" }}
+      className="top-0 h-18 fixed"
+      style={{
+        backgroundColor: "#212132",
+      }}
+      maxWidth="full"
     >
       <NavbarContent>
         <NavbarMenuToggle
@@ -115,19 +107,8 @@ export default function Nav() {
         </NavbarBrand>
       </NavbarContent>
 
-      {/* <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Features
-          </Link>
-        </NavbarItem>
-      </NavbarContent> */}
-
       <NavbarContent justify="end">
         <NavbarItem>
-          {/* <Button as={Link} color="primary" href="#" variant="flat">
-            Sign Up
-          </Button> */}
           <DropdownContent color="warning" variant="flat" />
         </NavbarItem>
       </NavbarContent>
