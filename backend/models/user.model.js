@@ -28,9 +28,12 @@ const userSchema = new mongoose.Schema({
     required: true,
     enum: ["Admin", "Manager", "Learner"],
   },
+  organizationId: {
+    type: mongoose.Schema.Types.ObjectId,
+  },
   assignedManager: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Users",
+    ref: "User",
     default: null,
   },
   assignedCourses: [
