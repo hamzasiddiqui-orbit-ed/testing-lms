@@ -62,15 +62,16 @@ function Login() {
 
   return (
     <>
+      
+      <Card isBlurred className="bg-[#212132]" shadow="lg">
       <div className="flex justify-center">
         <img
           src={OrbitLogo}
           alt="Orbit-ED"
           style={{ width: "150px" }}
-          className="mb-5"
+          className="mt-5"
         />
       </div>
-      <Card isBlurred className="bg-white/10" shadow="lg">
         <CardHeader className="flex gap-3 justify-center">
           <p className="text-3xl font-semibold text-white p-1">
             Sign In To Portal
