@@ -10,7 +10,7 @@ const generateToken = (id) => {
 
 const authUser = async (req, res) => {
   const { username, password } = req.body;
-  console.log('authUser called: ', username, password);
+  console.log("authUser called: ", username, password);
 
   const user = await User.findOne({ username });
   if (!user) {
@@ -18,12 +18,12 @@ const authUser = async (req, res) => {
   }
 
   if (user && (await user.matchPassword(password))) {
-    res.cookie('jwt', generateToken(user._id), {
+    res.cookie("jwt", generateToken(user._id), {
       httpOnly: true,
       // Only secure cookies in production mode
-      secure: process.env.NODE_ENV !== 'development',
+      secure: process.env.NODE_ENV !== "development",
       // Prevent CSRF attacks
-      sameSite: 'Strict',
+      sameSite: "Strict",
       // Max age = 24 hours
       maxAge: 24 * 60 * 60 * 1000,
     });
@@ -37,15 +37,17 @@ const authUser = async (req, res) => {
       userClass: user.userClass,
     });
   } else {
-    return res.status(401).json({ message: "Invalid credentials. Please try again." });
+    return res
+      .status(401)
+      .json({ message: "Invalid credentials. Please try again." });
   }
 };
 
 const logoutUser = (req, res) => {
-  res.cookie('jwt', '', {
+  res.cookie("jwt", "", {
     httpOnly: true,
     // Expire the cookie
-    expires: new Date(0)
+    expires: new Date(0),
   });
   res.status(200).json({ message: "Logged out successfully" });
 };

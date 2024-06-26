@@ -1,32 +1,40 @@
 const mongoose = require("mongoose");
 
-const moduleSchema = new mongoose.Schema({
+const moduleSchema = new mongoose.Schema(
+  {
     name: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
-    courseId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Course",
-        required: true,
+    description: String,
+    organizationId: mongoose.Schema.Types.ObjectId,
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
-    description: {
-        type: String,
-    },
-    organizationId: {
-        type: mongoose.Schema.Types.ObjectId,
-    },
-    questions: [{
-        text: {
-            type: String,
+    questionPool: [
+      {
+        questionType: {
+          type: String,
+          required: true,
+          enum: ["MCQ", "T/F", "open-ended"],
         },
-        options: [{
-            type: String,
-        }],
-        correctOption: {
-            type: String,
+        questionText: {
+          type: String,
+          required: true,
         },
-    }],
-});
+        options: [String],
+        correctOption: String,
+        difficulty: {
+          type: String,
+          enum: ["easy", "medium", "hard"],
+        },
+      },
+    ],
+  },
+  {
+    timestamps: true,
+  }
+);
 
 module.exports = mongoose.model("Module", moduleSchema);

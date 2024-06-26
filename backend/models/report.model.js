@@ -135,7 +135,7 @@ const reportSchema = new mongoose.Schema({
                 name: {
                     type: String,
                 },
-                contract: {
+                contact: {
                     type: Number,
                 },
                 score: {

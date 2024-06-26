@@ -16,8 +16,12 @@ const importData = async () => {
       name: "Test Learner",
       phone: "03333333333",
       jobTitle: "Student",
-      description: "BS Software Engineering.",
-      userClass: "Learner",
+      description: "Student BS Software Eng.",
+      userType: "Learner",
+      organizationId: "667bd4e9919333220c1f82bb",
+      assignedManager: "667bd584851c2024ca870ebd",
+      assignedModules: null,
+      firstLogin: true,
     });
 
     console.log('about to save.');
