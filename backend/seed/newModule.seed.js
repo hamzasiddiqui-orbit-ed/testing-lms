@@ -12,7 +12,7 @@ const importData = async () => {
     const module = new Module({
       name: "Communication-101 Test",
       description: "Orbit-Ed's test course for development",
-      organizationId: new mongoose.Types.ObjectId("667bd4e9919333220c1f82bb"),
+      organizationId: "667bd4e9919333220c1f82bb",
       createdBy: null,
       questionPool:[
         {
@@ -79,7 +79,16 @@ const importData = async () => {
           correctOption: "Gestures",
           difficulty: "hard",
         },
-      ]
+      ],
+      quiz: {
+        parameters: {
+          numberOfQuestions: null,
+          easyPercentage: null,
+          mediumPercentage: null,
+          hardPercentage: null,
+        },
+        questions: null,
+      },
     });
 
     console.log('about to save.');

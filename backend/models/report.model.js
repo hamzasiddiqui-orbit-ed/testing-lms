@@ -1,152 +1,93 @@
 const mongoose = require("mongoose");
 
-const reportSchema = new mongoose.Schema({
+const reportSchema = new mongoose.Schema(
+  {
     userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-    },
-    dateTime: {
-        type: Date,
-        required: true,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
     },
     moduleId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Module",
-        required: true,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Module",
+      required: true,
     },
-    courseId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Course",
-        required: true,
-    },
-    sessionTime: {
-        type: Number,
-        required: true,
+    totalTime: {
+      type: Number,
+      required: true,
     },
     audioUrl: {
-        type: String,
+      type: String,
     },
     transcription: {
-        type: String,
+      type: String,
     },
     deviceName: {
-        type: String,
+      type: String,
     },
-    quizScores: [{
+    quizScores: [
+      {
         questionId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Question',
+          type: mongoose.Schema.Types.ObjectId,
         },
         score: {
-            type: Number
-        }
-    }],
-    parameters: {
-        derived: {
-            persuasion: {
-                type: Number,
-            },
-            confidence: {
-                type: Number,
-            },
-            authenticity: {
-                type: Number,
-            },
-            collaboration: {
-                type: Number,
-            },
-            engagement: {
-                type: Number,
-            },
-            performance: {
-                type: Number,
-            },
-            preparation: {
-                type: Number,
-            },
+          type: Number,
         },
-        base: {
-            leftSplit: {
-                type: Number,
-            },
-            rightSplit: {
-                type: Number,
-            },
-            eyeContact: {
-                type: Number,
-            },
-            averageClarity: {
-                type: Number,
-            },
-            fillerSounds: {
-                score: {
-                    type: Number,
-                },
-                count: {
-                    type: Number,
-                },
-                list :[{
-                    type: Number,
-                }],
-            },
-            totalPauseCount: {
-                type: Number,
-            },
-            totalBadPauseCount: {
-                type: Number,
-            },
-            totalPauseTime: {
-                type: Number,
-            },
-            pauseScore: {
-                type: Number,
-            },
-            averageWPM: {
-                type: Number,
-            },
-            totalFillerWordCount: {
-                type: Number,
-            },
-            totalWordCount: {
-                type: Number,
-            },
-            fillerSoundScore: {
-                type: Number,
-            },
-            clarityScore: {
-                type: Number,
-            },
-            repititiveWords: {
-                score: {
-                    type: Number,
-                },
-                count: {
-                    type: Number,
-                },
-                list :[{
-                    type: Number,
-                }],
-            },
-            wpmScore: {
-                type: Number,
-            },
-            eyeContactDetails: [{
-                name: {
-                    type: String,
-                },
-                contact: {
-                    type: Number,
-                },
-                score: {
-                    type: Number,
-                },
-                avgLength: {
-                    type: Number,
-                },
-            }],
+      },
+    ],
+    eyeContact: {
+      leftSplit: Number,
+      rightSplit: Number,
+      score: Number,
+      avatars: [
+        {
+          name: String,
+          totalContact: Number,
+          qualityContact: Number,
+          avgContactLen: Number,
         },
+      ],
     },
-});
+    average_clarity: Number,
+    total_pause_count: Number,
+    average_wpm: Number,
+    total_pause_time: Number,
+    total_bad_pause_count: Number,
+    total_word_count: Number,
+    clarity_score: Number,
+    wpm_score: Number,
+    pauses_score: Number,
+    persuasion: Number,
+    confidence: Number,
+    authenticity: Number,
+    collaboration: Number,
+    engagement: Number,
+    performance: Number,
+    preparation: Number,
+    pitch: {
+      score: Number,
+      mean: Number,
+      list: [Number],
+    },
+    loudness: {
+      score: Number,
+      mean: Number,
+      list: [Number],
+    },
+    repetitiveWords: {
+      score: Number,
+      count: Number,
+      wordslist: [String],
+    },
+    fillerSounds: {
+      score: Number,
+      count: Number,
+      wordslist: [String],
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
 module.exports = mongoose.model("Report", reportSchema);

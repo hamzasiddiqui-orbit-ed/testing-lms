@@ -7,7 +7,10 @@ const moduleSchema = new mongoose.Schema(
       required: true,
     },
     description: String,
-    organizationId: mongoose.Schema.Types.ObjectId,
+    organizationId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Organization",
+    },
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
@@ -31,6 +34,15 @@ const moduleSchema = new mongoose.Schema(
         },
       },
     ],
+    quiz: {
+      parameter: {
+        numberOfQuestions: Number,
+        easyPercentage: Number,
+        mediumPercentage: Number,
+        hardPercentage: Number,
+      },
+      questions: [mongoose.Schema.Types.ObjectId],
+    },
   },
   {
     timestamps: true,
