@@ -34,7 +34,11 @@ const authUser = async (req, res) => {
       email: user.email,
       name: user.name,
       jobTitle: user.jobTitle,
-      userClass: user.userClass,
+      description: user.description,
+      userType: user.userType,
+      organizationId: user.organizationId,
+      assignedManager: user.assignedManager,
+      assignedManager: user.assignedManager
     });
   } else {
     return res

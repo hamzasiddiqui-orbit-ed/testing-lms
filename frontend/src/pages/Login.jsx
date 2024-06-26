@@ -44,7 +44,7 @@ function Login() {
 
   useEffect(() => {
     if (userInfo) {
-      switch (userInfo.userClass) {
+      switch (userInfo.userType) {
         case "Admin":
           navigate("/admin_dashboard");
           break;
