@@ -11,11 +11,18 @@ const sessionReportSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    deviceName: String,
     totalWordCount: Number,
     totalTime: Number,
+    totalScore: Number,
     audioUrl: String,
     transcription: String,
-    deviceName: String,
+    quizScore: [
+      {
+        questionId: mongoose.Schema.Types.ObjectId,
+        score: Number,
+      },
+    ],
     parameters: {
       base: {
         pitch: {

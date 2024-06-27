@@ -11,16 +11,17 @@ const importData = async () => {
     const sessionReport = new SessionReport({
       userId: "667d3dede467dd6ada32bd75",
       moduleName: "Communication-101 Test",
+      deviceName: "Occulus",
       totalWordCount: 67,
       totalTime: 84,
+      totalScore: 74,
       audioUrl: null,
       tanscription:
         "footprints in the snow have been unfailing provokers of sentiment ever since snow was first a white wonder in this drabcolored world of ours in a poetry book presented to one of our us by and on there was a poem by one wordsworth in which they stood out strongly with a picture all to themselves 2 but we didnt think very high either of the poem or of the sentiment footprints in the sand now were clear quite matter and we grasped crusoes attitude of mind much more easily than wordsworth excitement and mystery curiosity and suspense these were the only sentiments that tracks whether in sand or in snow were able to arouse in us",
-      deviceName: "Occulus",
-      quizScores: [
+      quizScore: [
         {
           questionId: "6679241abd80f3ae7932426a",
-          score: 10,
+          score: 1,
         },
         {
           questionId: "6679241abd80f3ae7932426b",
