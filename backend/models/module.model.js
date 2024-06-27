@@ -35,7 +35,7 @@ const moduleSchema = new mongoose.Schema(
       },
     ],
     quiz: {
-      parameter: {
+      parameters: {
         numberOfQuestions: Number,
         easyPercentage: Number,
         mediumPercentage: Number,
