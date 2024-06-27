@@ -31,6 +31,7 @@ const userSchema = new mongoose.Schema(
     },
     organizationId: {
       type: mongoose.Schema.Types.ObjectId,
+      ref: "Organization"
     },
     assignedManager: {
       type: mongoose.Schema.Types.ObjectId,
