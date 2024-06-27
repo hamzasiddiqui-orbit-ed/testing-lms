@@ -40,8 +40,14 @@ const userSchema = new mongoose.Schema(
     },
     assignedModules: [
       {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Courses",
+        moduleId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Courses",
+        },
+        dueDate: Date,
+        sessionsCompleted: Number,
+        cumulativeScore: Number,
+        isCompleted: Boolean,
       },
     ],
     firstLogin: {

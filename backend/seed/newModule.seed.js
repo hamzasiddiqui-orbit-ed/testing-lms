@@ -89,6 +89,10 @@ const importData = async () => {
         },
         questions: null,
       },
+      completionCriteria: {
+        numberOfSessions: 5,
+        cumulativeScore: null,
+      },
     });
 
     console.log('about to save.');

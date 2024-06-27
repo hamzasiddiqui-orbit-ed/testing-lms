@@ -43,6 +43,10 @@ const moduleSchema = new mongoose.Schema(
       },
       questions: [mongoose.Schema.Types.ObjectId],
     },
+    completionCriteria: {
+      numberOfSessions: Number,
+      cumulativeScore: Number,
+    },
   },
   {
     timestamps: true,
