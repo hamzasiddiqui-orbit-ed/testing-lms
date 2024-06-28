@@ -4,6 +4,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser")
 const connectDB = require("./config/db");
 const userRoutes = require("./routes/user.route");
+const reportRoutes = require("./routes/reports.route");
 
 var app = express();
 app.use(cors());
@@ -17,6 +18,7 @@ app.use(express.json());
 connectDB();
 
 app.use('/api/users', userRoutes);
+app.use('/api/reports', reportRoutes);
 
 app.get('/', (req, res) => {
     res.send("Hello World!");
