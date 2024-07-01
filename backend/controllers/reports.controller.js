@@ -2,20 +2,20 @@ const SessionReport = require("../models/sessionReport.model");
 const mongoose = require("mongoose");
 
 const getUserReports = async (req, res) => {
-  const userId = req.body._id;
+  const user_id = req.body._id;
 
-  if (!userId) {
+  if (!user_id) {
     res.status(400).json("No userId provided!");
   }
 
   var query = {
-    userId: mongoose.Types.ObjectId.createFromHexString(userId),
+    user_id: mongoose.Types.ObjectId.createFromHexString(user_id),
   };
 
   var projection = {
-    moduleName: 1.0,
-    totalScore: 1.0,
-    totalTime: 1.0,
+    module_name: 1.0,
+    total_score: 1.0,
+    total_time: 1.0,
     createdAt: 1.0,
   };
 
@@ -35,14 +35,14 @@ const getUserReports = async (req, res) => {
 };
 
 const getUserReport = async (req, res) => {
-  const reportId = req.body._id;
+  const report_id = req.body._id;
 
-  if (!reportId) {
+  if (!report_id) {
     res.status(400).json("No reportId provided.");
   }
 
   var query = {
-    _id: mongoose.Types.ObjectId.createFromHexString(reportId),
+    _id: mongoose.Types.ObjectId.createFromHexString(report_id),
   };
 
   try {
@@ -60,14 +60,14 @@ const getUserReport = async (req, res) => {
 };
 
 const getUserReportsDetailed = async (req, res) => {
-  const userId = req.body._id;
+  const user_id = req.body._id;
 
-  if (!userId) {
+  if (!user_id) {
     res.status(400).json("No userId provided!");
   }
 
   var query = {
-    userId: mongoose.Types.ObjectId.createFromHexString(userId),
+    user_id: mongoose.Types.ObjectId.createFromHexString(user_id),
   };
 
   try {
