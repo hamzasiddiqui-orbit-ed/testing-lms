@@ -2,87 +2,28 @@ const mongoose = require("mongoose");
 
 const sessionReportSchema = new mongoose.Schema(
   {
-    userId: {
+    user_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
-    moduleName: {
+    module_name: {
       type: String,
       required: true,
     },
-    deviceName: String,
-    totalWordCount: Number,
-    totalTime: Number,
-    totalScore: Number,
-    audioUrl: String,
+    device_name: String,
+    total_word_count: Number,
+    total_time: Number,
+    total_score: Number,
+    audio_url: String,
     transcription: String,
-    quizScore: [
+    quiz_score: [
       {
-        questionId: mongoose.Schema.Types.ObjectId,
+        question_id: mongoose.Schema.Types.ObjectId,
         score: Number,
       },
     ],
-    parameters: {
-      base: {
-        pitch: {
-          score: Number,
-          mean: Number,
-          list: [Number],
-        },
-        loudness: {
-          score: Number,
-          mean: Number,
-          list: [Number],
-        },
-        repetitiveWords: {
-          score: Number,
-          count: Number,
-          list: [String],
-        },
-        fillerSounds: {
-          score: Number,
-          count: Number,
-          list: [String],
-        },
-        pauses: {
-          time: Number,
-          badCount: Number,
-          totalCount: Number,
-          score: Number,
-        },
-        clarity: {
-          mean: Number,
-          score: Number,
-        },
-        wpm: {
-          mean: Number,
-          score: Number,
-        },
-        eyeContact: {
-          leftSplit: Number,
-          rightSplit: Number,
-          score: Number,
-          avatars: [
-            {
-              name: String,
-              totalContact: Number,
-              qualityContact: Number,
-              avgContactLen: Number,
-            },
-          ],
-        },
-      },
-      derived: {
-        persuasion: Number,
-        confidence: Number,
-        authenticity: Number,
-        collaboration: Number,
-        engagement: Number,
-        performance: Number,
-        preparation: Number,
-      },
-    },
+    parameters: Object,
   },
   {
     timestamps: true,

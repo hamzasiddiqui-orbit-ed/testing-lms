@@ -12,90 +12,108 @@ const importData = async () => {
     const module = new Module({
       name: "Communication-101 Test",
       description: "Orbit-Ed's test course for development",
-      organizationId: "667bd4e9919333220c1f82bb",
-      createdBy: null,
-      questionPool:[
+      organizationId: "668281bdb6dd30385357e088",
+      category_id: "6682868b6b1d62e769880a95",
+      created_by: null,
+      coach: {
+        monologue: "Hello, how are you? I am the coach.",
+        audio_url: null,
+      },
+      gpt_prompts: {
+        coach_prompt: "This is the test coach prompt.",
+        character_prompt: "This is the test character prompt.",
+        evaluation_prompt: "This is the test evaluation prompt.",
+      },
+      parameters: [
+        "668288b9f70f2bf97ff7e042",
+        "668288b9f70f2bf97ff7e043",
+        "668288b9f70f2bf97ff7e044",
+        "668288b9f70f2bf97ff7e046",
+        "668288b9f70f2bf97ff7e047",
+      ],
+      question_pool: [
         {
-          questionType: "T/F",
-          questionText: "To give a killer pitch first capture, capture info about your audience first.",
+          question_type: "T/F",
+          question_text:
+            "To give a killer pitch first capture, capture info about your audience first.",
           options: ["True", "False"],
-          correctOption: "True",
+          correct_option: "True",
           difficulty: "medium",
         },
         {
-          questionType: "MCQ",
-          questionText: "What is communication?",
+          question_type: "MCQ",
+          question_text: "What is communication?",
           options: [
             "A process of sharing information",
             "A way to confuse people",
             "An art form",
             "A science",
           ],
-          correctOption: "A process of sharing information",
+          correct_option: "A process of sharing information",
           difficulty: "easy",
         },
         {
-          questionType: "MCQ",
-          questionText: "Which is a key component of effective communication?",
+          question_type: "MCQ",
+          question_text: "Which is a key component of effective communication?",
           options: ["Clarity", "Ambiguity", "Noise", "Guesswork"],
-          correctOption: "Clarity",
+          correct_option: "Clarity",
           difficulty: "hard",
         },
         {
-          questionType: "MCQ",
-          questionText: "What is verbal communication?",
+          question_type: "MCQ",
+          question_text: "What is verbal communication?",
           options: [
             "Communication using words",
             "Communication using body language",
             "Communication using signs",
             "Communication using silence",
           ],
-          correctOption: "Communication using words",
+          correct_option: "Communication using words",
           difficulty: "easy",
         },
         {
-          questionType: "T/F",
-          questionText: "Speaking is an example of verbal communication?",
+          question_type: "T/F",
+          question_text: "Speaking is an example of verbal communication?",
           options: ["True", "False"],
-          correctOption: "True",
+          correct_option: "True",
           difficulty: "easy",
         },
         {
-          questionType: "MCQ",
-          questionText: "What is non-verbal communication?",
+          question_type: "MCQ",
+          question_text: "What is non-verbal communication?",
           options: [
             "Communication without words",
             "Communication using only text",
             "Communication through phone calls",
             "Communication through emails",
           ],
-          correctOption: "Communication without words",
+          correct_option: "Communication without words",
           difficulty: "medium",
         },
         {
-          questionType: "MCQ",
-          questionText: "Which is a form of non-verbal communication?",
+          question_type: "MCQ",
+          question_text: "Which is a form of non-verbal communication?",
           options: ["Gestures", "Talking", "Listening", "Reading"],
-          correctOption: "Gestures",
+          correct_option: "Gestures",
           difficulty: "hard",
         },
       ],
+      take_quiz: false,
       quiz: {
         parameters: {
-          numberOfQuestions: null,
-          easyPercentage: null,
-          mediumPercentage: null,
-          hardPercentage: null,
+          number_of_questions: null,
+          easy_percentage: null,
+          medium_percentage: null,
+          hard_percentage: null,
         },
-        questions: null,
       },
-      completionCriteria: {
-        numberOfSessions: 5,
-        cumulativeScore: null,
+      completion_criteria: {
+        number_of_sessions: 5,
+        cumulative_score: null,
       },
     });
 
-    console.log('about to save.');
+    console.log("about to save.");
     await module.save();
 
     console.log("Data Imported!");

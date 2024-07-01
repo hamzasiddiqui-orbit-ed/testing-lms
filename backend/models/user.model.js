@@ -21,36 +21,36 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
     phone: String,
-    jobTitle: String,
+    job_title: String,
     description: String,
-    profilePic: Buffer,
-    userType: {
+    profile_pic: Buffer,
+    user_type: {
       type: String,
       required: true,
-      enum: ["Admin", "Manager", "Learner"],
+      enum: ["Root", "Admin", "Manager", "Learner"],
     },
-    organizationId: {
+    organization_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Organization"
     },
-    assignedManager: {
+    assigned_manager: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       default: null,
     },
-    assignedModules: [
+    assigned_modules: [
       {
-        moduleId: {
+        module_id: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "Courses",
+          ref: "Module",
         },
-        dueDate: Date,
-        sessionsCompleted: Number,
-        cumulativeScore: Number,
-        isCompleted: Boolean,
+        due_date: Date,
+        sessions_completed: Number,
+        cumulative_score: Number,
+        is_completed: Boolean,
       },
     ],
-    firstLogin: {
+    first_login: {
       type: Boolean,
       Required: true,
     },

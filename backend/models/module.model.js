@@ -5,47 +5,62 @@ const moduleSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
+      unique: true,
     },
-    description: String,
-    organizationId: {
+    organization_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Organization",
     },
-    createdBy: {
+    category_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Course_Category",
+    },
+    description: String,
+    created_by: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-    questionPool: [
+    coach: {
+      monologue: String,
+      audio_url: String,
+    },
+    gpt_prompts: {
+      coach_prompt: String,
+      character_prompt: String,
+      evaluation_prompt: String,
+    },
+    parameters: [mongoose.Schema.Types.ObjectId],
+    question_pool: [
       {
-        questionType: {
+        question_type: {
           type: String,
           required: true,
           enum: ["MCQ", "T/F", "open-ended"],
         },
-        questionText: {
+        question_text: {
           type: String,
           required: true,
         },
         options: [String],
-        correctOption: String,
+        correct_option: String,
         difficulty: {
           type: String,
           enum: ["easy", "medium", "hard"],
         },
       },
     ],
+    take_quiz: Boolean,
     quiz: {
       parameters: {
-        numberOfQuestions: Number,
-        easyPercentage: Number,
-        mediumPercentage: Number,
-        hardPercentage: Number,
+        number_of_questions: Number,
+        easy_percentage: Number,
+        medium_percentage: Number,
+        hard_percentage: Number,
       },
-      questions: [mongoose.Schema.Types.ObjectId],
     },
-    completionCriteria: {
-      numberOfSessions: Number,
-      cumulativeScore: Number,
+    completion_criteria: {
+      number_of_sessions: Number,
+      cumulative_score: Number,
     },
   },
   {

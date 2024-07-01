@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const connectDB = require("../config/db");
-const Organization = require("../models/organization.model");
+const CourseCategory = require("../models/courseCategory.model");
 
 dotenv.config();
 
@@ -9,14 +9,14 @@ connectDB();
 
 const importData = async () => {
   try {
-    const organization = new Organization({
-      name: "Orbit-Ed",
-      image_url: null,
-      description: "Test organization for Orbit-Ed.",
+    const courseCategory = new CourseCategory({
+      name: "Communication Skills",
+      description: "Enhance your communication skills.",
+      tags: ["communication", "verbal communication", "non-verbal communication"],
     });
 
     console.log('about to save.');
-    await organization.save();
+    await courseCategory.save();
 
     console.log("Data Imported!");
     process.exit();
