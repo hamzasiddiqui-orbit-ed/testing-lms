@@ -44,7 +44,11 @@ function Login() {
 
   useEffect(() => {
     if (userInfo) {
-      switch (userInfo.userType) {
+      switch (userInfo.user_type) {
+        case "Root":
+          // Change Root user navigation
+          navigate("/admin_dashboard");
+          break;
         case "Admin":
           navigate("/admin_dashboard");
           break;
