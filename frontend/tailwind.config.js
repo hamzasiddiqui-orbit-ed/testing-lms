@@ -12,9 +12,10 @@ export default {
       fontFamily: {
         roboto: ['Roboto', 'sans-serif'],
       },
-      brand: '#304079',
-      core: '#FFFFFF',
-      utility: '#7C7878',
+      brand: '#0B2176', // Purple
+      highlight: '#F15A29', // Orange
+      core: '#FFFFFF',  // White
+      utility: '#929292', // Grey
     },
     extend: {},
   },

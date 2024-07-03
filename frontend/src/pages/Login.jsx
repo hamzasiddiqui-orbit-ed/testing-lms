@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useLoginMutation } from "../slices/userApiSlice";
 import { setCredentials } from "../slices/authSlice";
-import OrbitLogo from "../assets/orbitLogoMain.png";
 import { BiHide, BiShow } from "react-icons/bi";
+import OrbitEdLogoColored from "../assets/Orbit-Ed-logo-coloured.svg";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -64,14 +64,14 @@ function Login() {
   return (
     <div className="flex w-screen h-screen">
       <div className="sm:hidden absolute top-0 flex flex-col items-center justify-center">
-        <img src={OrbitLogo} alt="Orbit-ED" className="w-32 mt-5" />
+        <img src={OrbitEdLogoColored} alt="Orbit-Ed" className="size-32" />
         <p className="text-brand text-xl w-3/4 mt-3">
           Immersive Training Platform for Enterprises
         </p>
       </div>
 
       <div className=" flex flex-col flex-initial w-0 sm:w-7/12 bg-core items-center justify-center invisible sm:visible">
-        <img src={OrbitLogo} alt="Orbit-ED" />
+        <img src={OrbitEdLogoColored} alt="Orbit-Ed" className="size-80" />
         <p className="text-brand text-4xl w-3/4 mt-3">
           Immersive Training Platform for Enterprises
         </p>
@@ -94,7 +94,7 @@ function Login() {
                 placeholder="Type here"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className={`input input-bordered w-full max-w-xs rounded-full size-8 bg-[#8497DB] bg-opacity-20 ${
+                className={`input input-bordered w-full max-w-xs rounded-full size-8 bg-[#8497DB] border-brand bg-opacity-20 ${
                   error ? "border-error placeholder-error" : ""
                 }`}
               />
@@ -112,7 +112,7 @@ function Login() {
                 placeholder="Type here"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className={`input input-bordered w-full max-w-xs rounded-full size-8 bg-[#8497DB] bg-opacity-20 ${
+                className={`input input-bordered w-full max-w-xs rounded-full size-8 bg-[#8497DB] border-brand bg-opacity-20 ${
                   error ? "border-error placeholder-error" : ""
                 }`}
               />
@@ -122,9 +122,9 @@ function Login() {
                   for="toggle"
                 >
                   {showPassword ? (
-                    <BiHide style={{ color: "#304079", fontSize: "1.3em" }} />
+                    <BiHide className="text-utility size-5"  />
                   ) : (
-                    <BiShow style={{ color: "#304079", fontSize: "1.3em" }} />
+                    <BiShow className="text-utility size-5" />
                   )}
                 </label>
               </span>
