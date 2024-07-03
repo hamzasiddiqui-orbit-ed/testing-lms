@@ -22,7 +22,7 @@ import {
   AccordionItem
 } from "@nextui-org/react";
 import { FiLogOut } from "react-icons/fi";
-import OrbitLogo from "../assets/orbitlogo.png";
+import OrbitLogo from "../assets/orbitLogoSecondary.png";
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);

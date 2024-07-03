@@ -1,2 +1,5 @@
 node_modules
+# dotenv file for backend environment variable
 .env
+# JS config file for frontend environment variable
+config.local.js

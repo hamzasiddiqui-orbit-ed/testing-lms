@@ -14,7 +14,7 @@ const authUser = async (req, res) => {
 
   const user = await User.findOne({ username });
   if (!user) {
-    return res.status(401).json({ message: "User does not exit." });
+    return res.status(401).json({ message: "Please enter a valid email address" });
   }
 
   if (user && (await user.matchPassword(password))) {
@@ -43,7 +43,7 @@ const authUser = async (req, res) => {
   } else {
     return res
       .status(401)
-      .json({ message: "Invalid credentials. Please try again." });
+      .json({ message: "Password is incorrect" });
   }
 };
 
