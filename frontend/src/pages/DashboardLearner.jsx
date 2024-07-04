@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import SideNav from "../components/SideNav";
 import { BiMenu } from "react-icons/bi";
 import { MdClose } from "react-icons/md";
-import OrbitEdLogoColored from "../assets/Orbit-Ed-logo-coloured.svg";
 
 function DashboardLearner() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -31,7 +30,7 @@ function DashboardLearner() {
           {/* Page content here */}
           <label
             htmlFor="my-drawer-2"
-            className="btn btn-sm bg-brand drawer-button lg:hidden border-0 fixed top-4 right-4 z-50 rounded-full hover:bg-highlight"
+            className="btn btn-sm bg-brand drawer-button lg:hidden border-0 fixed top-4 right-5 z-50 rounded-full hover:bg-highlight"
           >
             {drawerOpen ? (
               <MdClose className="size-5 text-core" />
