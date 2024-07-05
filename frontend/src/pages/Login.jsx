@@ -1,51 +1,36 @@
+// src/pages/Login.jsx
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useLoginMutation } from "../slices/userApiSlice";
-import { setCredentials } from "../slices/authSlice";
 import { BiHide, BiShow } from "react-icons/bi";
 import OrbitEdLogoColored from "../assets/Orbit-Ed-logo-coloured.svg";
+import useLogin from "../hooks/useLogin";
 
-function Login() {
+function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const [login, { isLoading }] = useLoginMutation();
-
-  const userInfo = useSelector((state) => state.auth.userInfo);
+  const { login, isLoading } = useLogin();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (username == "" || password == "") {
-      setError("Username and Password fields should not be empty.");
-      return;
-    }
+    setError(null);
 
     try {
-      const res = await login({ username, password }).unwrap();
-      dispatch(setCredentials({ ...res }));
+      await login(username, password);
     } catch (err) {
-      setError(err.data.message); // Capture and set the error message
-      console.error("Failed to login:", err.data);
+      setError(err.message);
     }
 
-    setUsername("");
-    setPassword("");
+    // setUsername("");
+    // setPassword("");
   };
 
   useEffect(() => {
-    if (userInfo) {
-      switch (userInfo.user_type) {
+    if (state.userInfo) {
+      switch (state.userInfo.user_type) {
         case "Root":
-          // Change Root user navigation
-          navigate("/admin_dashboard");
-          break;
         case "Admin":
           navigate("/admin_dashboard");
           break;
@@ -59,7 +44,7 @@ function Login() {
           navigate("/");
       }
     }
-  }, [userInfo, history]);
+  }, [state.userInfo, navigate]);
 
   return (
     <div className="flex w-screen h-screen">
@@ -70,7 +55,7 @@ function Login() {
         </p>
       </div>
 
-      <div className=" flex flex-col flex-initial w-0 sm:w-7/12 bg-core items-center justify-center invisible sm:visible">
+      <div className="flex flex-col flex-initial w-0 sm:w-7/12 bg-core items-center justify-center invisible sm:visible">
         <img src={OrbitEdLogoColored} alt="Orbit-Ed" className="size-80" />
         <p className="text-brand text-4xl w-3/4 mt-3">
           Immersive Training Platform for Enterprises
@@ -119,10 +104,10 @@ function Login() {
               <span className="absolute inset-y-0 top-9 right-3 flex items-center">
                 <label
                   onClick={() => setShowPassword(!showPassword)}
-                  for="toggle"
+                  htmlFor="toggle"
                 >
                   {showPassword ? (
-                    <BiHide className="text-utility size-5"  />
+                    <BiHide className="text-utility size-5" />
                   ) : (
                     <BiShow className="text-utility size-5" />
                   )}
@@ -139,7 +124,7 @@ function Login() {
               <button
                 className="btn-sm bg-[#8497DB] bg-opacity-20 text-brand mt-8 rounded-full px-6 border-[#B5BDD4]"
                 type="submit"
-                style={{  borderWidth: "1px" }}
+                style={{ borderWidth: "1px" }}
               >
                 {isLoading ? (
                   <>
@@ -158,4 +143,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginPage;

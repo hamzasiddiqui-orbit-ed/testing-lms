@@ -1,8 +1,5 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useLogoutMutation } from "../slices/userApiSlice";
-import { logout } from "../slices/authSlice";
+// src/components/SideNav.jsx
+import React, { useEffect } from "react";
 import OrbitEdLogoWhite from "../assets/Orbit-Ed-logo-white.svg";
 import { RxDashboard } from "react-icons/rx";
 import { PiGraduationCap } from "react-icons/pi";
@@ -13,21 +10,13 @@ import {
 } from "react-icons/hi2";
 import { IoSettingsOutline, IoLogOutOutline } from "react-icons/io5";
 import SideNavButton from "./SideNavButton";
+import { useLogout } from "../hooks/useLogout";
 
 function SideNav() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const { logout, isLoading } = useLogout();
 
-  const [logoutApiCall] = useLogoutMutation();
-
-  const handleLogOut = async () => {
-    try {
-      await logoutApiCall().unwrap();
-      dispatch(logout());
-      navigate("/");
-    } catch (err) {
-      console.error(err);
-    }
+  const handleLogOut = async (e) => {
+    logout();
   };
 
   return (
